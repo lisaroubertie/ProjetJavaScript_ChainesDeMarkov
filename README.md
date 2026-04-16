@@ -1,1 +1,1 @@
-# ProjetJava_ChainesDeMarkov
+# ProjetJavaScript_ChainesDeMarkov
