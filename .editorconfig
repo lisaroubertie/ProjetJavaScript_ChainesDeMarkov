@@ -1,0 +1,9 @@
+root = true
+
+[*]
+indent_style = space # indentat° avec des espaces et non des tab
+indent_size = 2 # 2 espaces par niv de tab
+end_of_line = lf # type de retour à la ligne pour éviter les bug entre windows et mac
+charset = utf-8
+trim_trailing_whitespace = true # supp les espaces en fin de ligne
+insert_final_newline = true # ajoute une ligne vide à la fin de chaque fichier (convention Unix)
