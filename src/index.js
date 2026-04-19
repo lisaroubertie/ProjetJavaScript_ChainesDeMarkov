@@ -1,14 +1,7 @@
-import * as R from 'ramda';
-import {text} from '../data/text.js';
-import {normalizeText} from "./model/normalize.js";
-import {count} from "./model/count.js";
-import {returnProba} from "./model/probability.js";
-import {extractTop5} from "./model/top.js";
+import {getTop5} from "./controller/markovController.js";
+import {displayTop5} from "./view/display.js";
 
-console.log("--- Avec des lettres ---")
-const letters = normalizeText(text).split("");
-console.log(extractTop5(returnProba(count(letters)), "a"));
-
-console.log("--- Avec des mots ---")
-const words = normalizeText(text).split(" ");
-console.log(extractTop5(returnProba(count(words)), "le"));
+displayTop5("letters", "a", getTop5("letters", "a"));
+displayTop5("letters", "e", getTop5("letters", "e"));
+displayTop5("words", "le", getTop5("words", "le"));
+displayTop5("words", "la", getTop5("words", "la"));
