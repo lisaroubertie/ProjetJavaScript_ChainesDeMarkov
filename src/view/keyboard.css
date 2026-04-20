@@ -1,0 +1,60 @@
+body {
+  font-family: sans-serif;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+#current-word {
+  background: white;
+  min-height: 80px; /*pour que le texte repousse pas le clavier*/
+  height: 80px;
+}
+
+#suggestions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+#suggestions button {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#ligne1, #ligne2, #ligne3, #ligne4 {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.key {
+  background: white;
+  border: none;
+  border-radius: 6px;
+  width: 36px;
+  height: 44px;
+  font-size: 14px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2); /* pour faire l'ombre sur les touches */
+}
+
+.keyspace {
+  background: white;
+  border: none;
+  border-radius: 6px;
+  width: 180px;
+  height: 44px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+.keydelete {
+  background: white;
+  border: none;
+  border-radius: 6px;
+  width: 80px;
+  height: 44px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}

@@ -1,7 +1,15 @@
-import {getTop5} from "./controller/markovController.js";
-import {displayTop5} from "./view/display.js";
+import {letterChain} from "./controller/markovController.js";
+import {wordChain} from "./controller/markovController.js";
+import {top5} from "./model/top.js";
+import fs from "fs";
+import * as R from "ramda";
 
-displayTop5("letters", "a", getTop5("letters", "a"));
-displayTop5("letters", "e", getTop5("letters", "e"));
-displayTop5("words", "le", getTop5("words", "le"));
-displayTop5("words", "la", getTop5("words", "la"));
+// Création d'un objet avec les chaines de top 5
+const data = {
+   letters: R.map(top5, letterChain),
+  words: R.map(top5, wordChain),
+}
+
+// écriture du fichier JSON pour regrouper les chaines de top5
+// On ne rappelle pas toute la fonction à chaque lettre ou mot tapé, les chaines sont pré enregistrée
+fs.writeFileSync('data/markov.json', JSON.stringify(data));

@@ -8,8 +8,8 @@ import {extractTop5} from "../model/top.js";
 const letters = normalizeText(text).split("");
 const words = normalizeText(text).split(" ");
 
-const letterChain = returnProba(count(letters));
-const wordChain = returnProba(count(words));
+export const letterChain = returnProba(count(letters));
+export const wordChain = returnProba(count(words));
 
 export const getTop5 = (mode, cle) => {
   if (mode === "letters") {
