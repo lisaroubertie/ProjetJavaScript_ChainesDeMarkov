@@ -18,7 +18,7 @@ Pour rendre le résultat concret et interactif, j'ai créé une interface sous f
 
 Cloner le dépôt et installer les dépendances :
 ```bash
-git clone https://github.com/lisaroubertie/ProjetJavaScript_ChainesDeMarkov
+git clone https://github.com/lisaroubertie/ProjetJavaScript_ChainesDeMarkov.git
 cd ProjetJavaScript_ChainesDeMarkov
 npm install
 ```
