@@ -17,18 +17,24 @@ Pour rendre le résultat concret et interactif, j'ai créé une interface sous f
 ## Installation
 
 Cloner le dépôt et installer les dépendances :
-git clone [url]
-cd Projet
+```bash
+git clone https://github.com/lisaroubertie/ProjetJavaScript_ChainesDeMarkov
+cd ProjetJavaScript_ChainesDeMarkov
 npm install
+```
 
 
 ## Utilisation
 
 ### 1. Générer les chaînes de Markov (optionnel / utile si changement de texte source)
-*node src/index.js*
+```bash
+node src/index.js
+```
 
 ### 2. Lancer l'interface
-*npx serve .*
+```bash
+npx serve .
+```
 Puis ouvrir l'URL indiquée dans le terminal. L'interface charge 'markov.json' et ne recalcule pas les chaînes à chaque saisie.
 
 
@@ -36,6 +42,7 @@ Puis ouvrir l'URL indiquée dans le terminal. L'interface charge 'markov.json' e
 
 J'ai choisi une architecture MVC que nous avons abordé en cours. Mon projet se présente donc comme ci-dessous :
 
+```
 src/
 |--- index.js                         # Point d'entrée qui orchestre les appels
 |--- model/
@@ -53,7 +60,7 @@ data/
 |--- text.js                          # Texte source pour les essais
 |--- text.txt                         # Texte source définitif
 |--- markov.json                      # Chaînes de Markov pré-calculées (top 5)
-
+```
 
 ## Choix techniques
 
@@ -81,7 +88,7 @@ C'est d'ailleurs cette difficulté qui m'a poussée à pré-enregistrer les cha�
 Avant de passer à l'interface, je me suis assurée que tout fonctionnait correctement avec 'index.js', 'markovController.js' et 'display.js'.
 Pour l'interface, j'ai commencé à réfléchir à ce que je voulais voir apparaitre, puis j'ai créé 'keyboard.html'. 'display.js' permet de rendre le HTML dynamique (lié à 'index.js' et 'markovController.js'), et 'keyboard.css' gère l'esthétique. Je souhaitais recréer un clavier dans le style de celui d'Apple dans l'application Message, et le résultat correspond à ce que j'imaginais. 
 
-Après avoir ajouté mon texte définitif, mes derniers deboguages ont consisté à corriger les erreurs que je trouvais lors des essais avec mon clavier interractif. Il a fallu prendre en compte les `/r` que je n'avais pas anticipé précédement dans 'normalize.js', et j'ai aussi supprimé les doubles espaces avec `\s+, car ils comptaient comme des mots.
+Après avoir ajouté mon texte définitif, mes derniers deboguages ont consisté à corriger les erreurs que je trouvais lors des essais avec mon clavier interractif. Il a fallu prendre en compte les `/r` que je n'avais pas anticipé précédement dans 'normalize.js', et j'ai aussi supprimé les doubles espaces avec `\s+`, car ils comptaient comme des mots.
 
 
 ## Auteur
