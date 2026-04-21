@@ -11,3 +11,5 @@
 
 node_modules/
 .idea/
+
+data/markov.json
