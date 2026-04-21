@@ -1,22 +1,16 @@
 import * as R from 'ramda';
-import {normalizeText} from "../model/normalize.js";
-import {count} from "../model/count.js";
-import {returnProba} from "../model/probability.js";
-import {extractTop5} from "../model/top.js";
+import {normaliserTexte} from "../model/normalize.js";
+import {compterTransitions} from "../model/count.js";
+import {construireChaineProba} from "../model/probability.js";
 import fs from "fs"
 
-const text = fs.readFileSync("data/text.txt", "utf8");
-const letters = normalizeText(text).split("");
-const words = normalizeText(text).split(" ");
+// lecture du texte source
+const texteSource = fs.readFileSync("data/text.txt", "utf8");
 
-export const letterChain = returnProba(count(letters));
-export const wordChain = returnProba(count(words));
+// découpage du texte normalisé en tableaux de symboles
+const tableauLettres = normaliserTexte(texteSource).split(""); // symbole = lettre
+const tableauMots = normaliserTexte(texteSource).split(" "); // symbole = mot
 
-// inutile car on génère le top 5 avec un json
-// export const getTop5 = (mode, cle) => {
-//   if (mode === "letters") {
-//     return extractTop5(letterChain, cle);
-//   } else {
-//     return extractTop5(wordChain, cle)
-//   }
-// }
+// construction des 2 chaines de Markov avec proba
+export const chaineLettres = construireChaineProba(compterTransitions(tableauLettres));
+export const chaineMots = construireChaineProba(compterTransitions(tableauMots));

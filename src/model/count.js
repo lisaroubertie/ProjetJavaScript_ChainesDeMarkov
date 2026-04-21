@@ -1,11 +1,12 @@
 import * as R from 'ramda';
 
-export const toPair = R.aperture;
+// génère les paires de transition à partir d'un tableau
+export const genererPaires = R.aperture;
 
-export const count = R.pipe(
-  toPair(2),
-  R.groupBy(R.head),
+export const compterTransitions = R.pipe(
+  genererPaires(2), // transforme le tableau en paires (courant, suivant)
+  R.groupBy(R.head), // regroupe par le premier élément
   R.map(
-    R.countBy(R.last),
+    R.countBy(R.last), // compte combien de fois chaque successeur apparait
   )
 );

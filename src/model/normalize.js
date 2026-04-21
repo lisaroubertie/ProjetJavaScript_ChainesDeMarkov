@@ -1,13 +1,14 @@
 import * as R from 'ramda';
 
-// remplace les caracteres avec accents par la lettre sans accents
-export const removeAccents = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+// remplacement des caracteres avec accents par la lettre sans accents
+export const supprimerAccents = (texte) => texte.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 
-export const normalizeText = R.pipe(
-      removeAccents,
-      R.toLower, // on remplace les majuscules par des minuscules
-      R.replace(/\n/g, " "), // retirage des \n manuellement car ils apparaissent encore après normalize
-      R.replace(/\r/g, " "), // pour les fichiers windows
-      R.replace(/\s+/g, " "), // pour un ou plusieurs espaces consécutifs
-      R.replace(/[^a-z\s]/g, ""), // si c'est pas une lettre ou un espace, on remplace par rien
+export const normaliserTexte = R.pipe(
+      supprimerAccents,
+      R.toLower, // mise en minuscule
+      R.replace(/\n/g, " "), // remplacement des \n par des espaces
+      R.replace(/\r/g, " "), // remplacement des \r par des espaces
+      R.replace(/\s+/g, " "), // remplacment des espaces consécutifs par un espace
+      R.replace(/[^a-z\s]/g, ""), // suppression des caractères qui ne sont ni des lettres ni un espace
+      R.trim // supprimer les espaces de début et fin
     )

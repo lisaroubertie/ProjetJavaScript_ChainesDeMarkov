@@ -1,24 +1,24 @@
-const response = await fetch("../../data/markov.json"); //lecture du JSON contenant les chaines de markov
-const markov = await response.json();
+const reponse = await fetch("../../data/markov.json"); //lecture du JSON contenant les chaines de markov
+const chainesMarkov = await reponse.json();
 //console.log(markov);
 
 // --------------------------------------------------------------------------
 // Lettres du clavier
-const keys = document.querySelectorAll(".key");
+const touches = document.querySelectorAll(".key");
 
 // taper la lettre dans le champs current-word lorsqu'on clic sur le clavier
-keys.forEach((button) => {
-  button.addEventListener("click", () => {
-    document.getElementById("current-word").textContent += button.textContent;
-    const lettre = button.textContent.toLowerCase(); // parce que le clavier est en majuscule
-    const highlight = markov.letters[lettre]; // récupération de la proba de la lettre
-    keys.forEach((k) => {
-      k.style.background = "white" // toutes les lettres sont en blanc
+touches.forEach((bouton) => {
+  bouton.addEventListener("click", () => {
+    document.getElementById("current-word").textContent += bouton.textContent;
+    const lettreSaisie = bouton.textContent.toLowerCase(); // parce que le clavier est en majuscule
+    const successeursLettre = chainesMarkov.letters[lettreSaisie]; // récupération de la proba de la lettre
+    touches.forEach((t) => {
+      t.style.background = "white" // toutes les lettres sont en blanc
     });
-    if (highlight) { // on colorie les lettres les plus probables (si la lettre existe)
-      highlight.forEach(([lettre, proba]) => {
-        const bouton = Array.from(keys).find(k => k.textContent.toLowerCase() === lettre);
-        if (bouton) bouton.style.background = "#8a9c9c"
+    if (successeursLettre) { // on colorie les lettres les plus probables (si la lettre existe)
+      successeursLettre.forEach(([lettre, proba]) => {
+        const toucheSuccesseur = Array.from(touches).find(t => t.textContent.toLowerCase() === lettre);
+        if (toucheSuccesseur) toucheSuccesseur.style.background = "#8a9c9c"
       });
     }
   });
@@ -26,15 +26,15 @@ keys.forEach((button) => {
 
 // --------------------------------------------------------------------------
 // Bouton espace
-const space = document.querySelectorAll(".keyspace");
+const toucheEspace = document.querySelectorAll(".keyspace");
 
-space.forEach((button) => {
+toucheEspace.forEach((button) => {
   button.addEventListener("click", () => {
     const phrase = document.getElementById("current-word").textContent; // toute la phrase contenu dans la zone de texte
     document.getElementById("current-word").textContent += " ";
     const dernierMot = phrase.split(" ").at(-1); // le dernier mot tapé
     //console.log(dernierMot);
-    const suggestionsTop5 = markov.words[dernierMot.toLowerCase()];
+    const suggestionsTop5 = chainesMarkov.words[dernierMot.toLowerCase()];
     //console.log(suggestionsTop5);
     document.getElementById("suggestions").textContent = ""; //on vide avant de reremplir
     if (suggestionsTop5) { // création d'un bouton pour les 5 mots les plus probables
@@ -52,11 +52,11 @@ space.forEach((button) => {
 
 // --------------------------------------------------------------------------
 // Bouton delete
-const supp = document.querySelectorAll(".keydelete");
+const toucheSuppr = document.querySelectorAll(".keydelete");
 
-supp.forEach((button) => {
-  button.addEventListener("click", () => {
-    const phrase = document.getElementById("current-word").textContent;
+toucheSuppr.forEach((bouton) => {
+  bouton.addEventListener("click", () => {
+    const phrase = document.getElementById("current-word").textContent; // récupération de la phrase actuelle
     document.getElementById("current-word").textContent = phrase.slice(0,-1); // suppression du dernier caractère
   });
 });
