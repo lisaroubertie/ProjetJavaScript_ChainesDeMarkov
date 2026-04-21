@@ -26,7 +26,7 @@ npm install
 
 ## Utilisation
 
-### 1. Générer les chaînes de Markov (optionnel / utile si changement de texte source)
+### 1. Générer les chaînes de Markov (à la première utilisation ou si changement de texte source)
 ```bash
 node src/index.js
 ```
